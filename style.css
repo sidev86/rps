@@ -24,12 +24,18 @@ img {
 }
 
 button {
+  animation: shrink 0.2s forwards;
   margin: 10px;
   width: 100px;
   height: 100px;
   background-color: rgb(255, 230, 109);
   border: solid 2px white;
   border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  animation: grow 0.2s forwards;
 }
 
 #title {
@@ -59,4 +65,22 @@ button {
   justify-content: center;
   align-items: center;
   margin: 50px;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
 }
