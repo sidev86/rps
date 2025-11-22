@@ -50,8 +50,13 @@ function inputIsValid(text) {
 }
 
 function showPlayerChoice(choice) {
-  let h1PlayerMove = document.querySelector("#h1-player-choice");
-  h1PlayerMove.textContent = `Player chose ${choice}`;
+  let imgPlayerMove = document.querySelector("#img-player-move");
+  imgPlayerMove.src = `./images/${choice}.png`;
+}
+
+function showComputerChoice(choice) {
+  let imgCpuMove = document.querySelector("#img-cpu-move");
+  imgCpuMove.src = `./images/${choice}.png`;
 }
 
 function game() {
@@ -84,23 +89,22 @@ function game() {
   function playRound() {
     cpuChoice = getComputerChoice();
     if (inputIsValid(playerChoice)) {
-      let h1CpuMove = document.querySelector("#h1-cpu-choice");
       let h1Result = document.querySelector("#h1-result");
-      h1CpuMove.textContent = `Computer chose ${cpuChoice}`;
+      showComputerChoice(cpuChoice);
       let winner = getRoundWinner(playerChoice, cpuChoice);
       if (winner == "cpu") {
         cpuScore++;
-        h1Result.textContent = `${cpuChoice.toUpperCase()} beats ${playerChoice.toUpperCase()}. CPU wins!`;
+        h1Result.textContent = `CPU WIN!`;
       } else if (winner == "player") {
         playerScore++;
-        h1Result.textContent = `${playerChoice.toUpperCase()} beats ${cpuChoice.toUpperCase()}. Player wins!`;
+        h1Result.textContent = `PLAYER WIN!`;
       } else {
-        h1Result.textContent = `Draw!`;
+        h1Result.textContent = `DRAW`;
       }
       const h1PlayerScore = document.querySelector("#h1-player-score");
       const h1CpuScore = document.querySelector("#h1-cpu-score");
-      h1PlayerScore.textContent = `Player Score: ${playerScore}`;
-      h1CpuScore.textContent = `Computer Score: ${cpuScore}`;
+      h1PlayerScore.textContent = `PLAYER SCORE: ${playerScore}`;
+      h1CpuScore.textContent = `COMPUTER SCORE: ${cpuScore}`;
     }
     if (playerScore + cpuScore == 5) {
       checkGameWinner(playerScore, cpuScore);
